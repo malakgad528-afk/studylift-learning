@@ -1,0 +1,109 @@
+!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyLift | منصتك التعليمية</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #f4f7fb;
+    }
+    header {
+      padding: 22px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #273449;
+    }
+    .logo { font-size: 26px; font-weight: bold; }
+    .logo span { color: #5eead4; }
+    .hero {
+      text-align: center;
+      padding: 75px 20px 55px;
+    }
+    .hero h1 { font-size: clamp(32px, 6vw, 54px); margin-bottom: 15px; }
+    .hero h1 span { color: #5eead4; }
+    .hero p { color: #c0cada; line-height: 1.9; }
+    .btn {
+      display: inline-block;
+      background: #5eead4;
+      color: #0b1220;
+      padding: 13px 24px;
+      margin-top: 16px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .section { padding: 25px 7% 65px; }
+    .section h2 { text-align: center; margin-bottom: 30px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      background: #141f31;
+      border: 1px solid #29384e;
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .card .icon { font-size: 32px; }
+    .card p { color: #c0cada; line-height: 1.8; }
+    footer {
+      text-align: center;
+      padding: 25px;
+      color: #aeb9ca;
+      border-top: 1px solid #273449;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Study<span>Lift</span></div>
+    <div>منصتك التعليمية المجانية 🎓</div>
+  </header>
+
+  <section class="hero">
+    <h1>رحلتك للنجاح <span>تبدأ هنا</span></h1>
+    <p>
+      اتعلم، نظّم مذاكرتك، وشارك زملاءك.<br>
+      كل أدواتك التعليمية في مكان واحد.
+    </p>
+    <a class="btn" href="#services">اكتشف المنصة</a>
+  </section>
+
+  <section class="section" id="services">
+    <h2>كل اللي تحتاجه في StudyLift</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🎬</div>
+        <h3>فيديوهات تعليمية</h3>
+        <p>دروس وشروحات تساعدك تفهم المنهج.</p>
+      </div>
+      <div class="card">
+        <div class="icon">📚</div>
+        <h3>مذكرات وملخصات</h3>
+        <p>ملفات مراجعة ومذكرات مرتبة لكل مادة.</p>
+      </div>
+      <div class="card">
+        <div class="icon">👥</div>
+        <h3>مجموعات المذاكرة</h3>
+        <p>مساحة للتعاون ومناقشة الأسئلة مع زملائك.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💬</div>
+        <h3>شات الطلاب</h3>
+        <p>تواصل دراسي آمن بعد تفعيل الحسابات والحماية.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    StudyLift © 2026 — اتعلم. اتطور. انجح.
+  </footer>
+</body>
+</html>
