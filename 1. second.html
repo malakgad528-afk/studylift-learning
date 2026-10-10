@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تانية بكالوريا | StudyLift</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #101827;
+      color: white;
+      text-align: center;
+      padding: 25px;
+    }
+    h1 { color: #65e6bd; }
+    .subjects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      max-width: 900px;
+      margin: 30px auto;
+    }
+    .card {
+      background: #1c293d;
+      padding: 22px;
+      border-radius: 16px;
+    }
+    .icon { font-size: 36px; }
+    a {
+      display: inline-block;
+      background: #65e6bd;
+      color: #101827;
+      padding: 10px 18px;
+      border-radius: 9px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .back { background: #29374c; color: white; }
+  </style>
+</head>
+<body>
+  <h1>📚 تانية بكالوريا</h1>
+  <p>اختاري المادة اللي عايزة تذاكريها</p>
+
+  <div class="subjects">
+    <div class="card">
+      <div class="icon">📖</div>
+      <h2>اللغة العربية</h2>
+      <p>الدروس والمراجعة</p>
+      <a href="arabic.html">ابدئي المذاكرة</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">🇬🇧</div>
+      <h2>اللغة الإنجليزية</h2>
+      <p>الدروس والقواعد</p>
+      <a href="#english">قريبًا</a>
+    </div>
+
+    <div class="card">
+      <div class="icon">📝</div>
+      <h2>المراجعات والامتحانات</h2>
+      <p>هنضيف تدريبات تفاعلية هنا</p>
+      <a href="#exams">قريبًا</a>
+    </div>
+  </div>
+
+  <a class="back" href="index.html">العودة للصفحة الرئيسية</a>
+</body>
+</html>
