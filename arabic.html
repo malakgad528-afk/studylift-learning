@@ -1,0 +1,240 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>اللغة العربية | StudyLift</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #0b1220;
+      color: #f1f5f9;
+      line-height: 1.9;
+    }
+    header {
+      background: #111d30;
+      padding: 22px 16px;
+      border-bottom: 1px solid #2b3d54;
+    }
+    header a { color: #66e6bb; text-decoration: none; }
+    main { max-width: 900px; margin: auto; padding: 22px 15px; }
+    h1, h2 { color: #66e6bb; }
+    .card, .lesson {
+      background: #152238;
+      border: 1px solid #2b3d54;
+      border-radius: 14px;
+      padding: 18px;
+      margin: 15px 0;
+    }
+    .lesson { display: none; }
+    .lesson.active { display: block; }
+    button {
+      background: #66e6bb;
+      color: #0b1220;
+      border: 0;
+      border-radius: 9px;
+      padding: 11px 15px;
+      margin: 5px 3px;
+      font-weight: bold;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .lesson-button {
+      display: block;
+      width: 100%;
+      text-align: right;
+      background: #20334d;
+      color: #f1f5f9;
+      border: 1px solid #38506c;
+      margin: 10px 0;
+    }
+    .lesson-button:hover { background: #2b4561; }
+    .example {
+      background: #0b1220;
+      border-right: 4px solid #66e6bb;
+      padding: 12px;
+      border-radius: 8px;
+    }
+    .answer {
+      display: block;
+      margin: 8px 0;
+      color: #e2e8f0;
+    }
+    #result { font-weight: bold; margin-top: 12px; }
+    footer { text-align: center; padding: 20px; color: #94a3b8; }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="first.html">← الرجوع إلى مواد أولى بكالوريا</a>
+  <h1>📚 اللغة العربية</h1>
+  <p>افهم الدرس، شوف الأمثلة، واختبر نفسك!</p>
+</header>
+
+<main>
+  <section class="card">
+    <h2>📖 قائمة الدروس</h2>
+    <p>اختار الدرس اللي عايز تذاكره:</p>
+    <button class="lesson-button" onclick="showLesson('grammar')">
+      ١- النحو: كان وأخواتها
+    </button>
+    <button class="lesson-button" onclick="showLesson('rhetoric')">
+      ٢- البلاغة: التشبيه
+    </button>
+    <button class="lesson-button" onclick="showLesson('reading')">
+      ٣- القراءة: الفكرة الرئيسة
+    </button>
+    <button class="lesson-button" onclick="showLesson('writing')">
+      ٤- التعبير: كتابة فقرة
+    </button>
+    <button class="lesson-button" onclick="showLesson('quiz')">
+      ٥- اختبر نفسك ✅
+    </button>
+  </section>
+
+  <section id="welcome" class="card">
+    <h2>أهلًا بيك في درس العربي 💚</h2>
+    <p>
+      اختار أي درس من القائمة فوق، واقرأ الشرح والأمثلة،
+      وبعدها جرّب تحل التدريبات بنفسك.
+    </p>
+    <p>المذاكرة خطوة بخطوة بتسهّل الفهم.</p>
+  </section>
+
+  <section id="grammar" class="lesson card">
+    <h2>الدرس الأول: كان وأخواتها</h2>
+    <h3>ما هي كان وأخواتها؟</h3>
+    <p>
+      هي أفعال ناسخة تدخل على الجملة الاسمية؛ فترفع المبتدأ
+      ويسمى اسمها، وتنصب الخبر ويسمى خبرها.
+    </p>
+    <p>من أخوات كان: أصبح، أمسى، صار، بات، ظل، ليس.</p>
+    <div class="example">
+      <strong>مثال:</strong> الطالبُ مجتهدٌ.<br>
+      بعد دخول كان: كان الطالبُ مجتهدًا.<br>
+      الطالبُ: اسم كان مرفوع بالضمة.<br>
+      مجتهدًا: خبر كان منصوب بالفتحة.
+    </div>
+    <h3>تدريب سريع</h3>
+    <p>أكمل: أصبح الجوُّ ....</p>
+    <label class="answer"><input type="radio" name="g" value="wrong"> جميلٌ</label>
+    <label class="answer"><input type="radio" name="g" value="correct"> جميلًا</label>
+    <button onclick="check('g','grammarResult')">تحقق من الإجابة</button>
+    <p id="grammarResult"></p>
+  </section>
+
+  <section id="rhetoric" class="lesson card">
+    <h2>الدرس الثاني: التشبيه</h2>
+    <p>
+      التشبيه هو مشاركة شيء لشيء آخر في صفة معينة،
+      باستخدام أداة أو من غير أداة.
+    </p>
+    <div class="example">
+      <strong>مثال:</strong> الجندي كالأسد في الشجاعة.<br>
+      المشبَّه: الجندي.<br>
+      المشبَّه به: الأسد.<br>
+      أداة التشبيه: الكاف.<br>
+      وجه الشبه: الشجاعة.
+    </div>
+    <h3>تدريب سريع</h3>
+    <p>في جملة «العلم كالنور»، ما أداة التشبيه؟</p>
+    <label class="answer"><input type="radio" name="r" value="wrong"> العلم</label>
+    <label class="answer"><input type="radio" name="r" value="correct"> الكاف</label>
+    <label class="answer"><input type="radio" name="r" value="wrong"> النور</label>
+    <button onclick="check('r','rhetoricResult')">تحقق من الإجابة</button>
+    <p id="rhetoricResult"></p>
+  </section>
+
+  <section id="reading" class="lesson card">
+    <h2>الدرس الثالث: الفكرة الرئيسة</h2>
+    <p>
+      الفكرة الرئيسة هي المعنى الأساسي الذي يدور حوله النص.
+      أما التفاصيل فهي المعلومات والأمثلة التي تشرح هذه الفكرة.
+    </p>
+    <div class="example">
+      <strong>اقرأ:</strong><br>
+      «القراءة غذاء للعقل، فهي تزيد المعرفة،
+      وتنمي اللغة، وتساعد الإنسان على فهم العالم».
+      <br><strong>الفكرة الرئيسة:</strong> أهمية القراءة وفوائدها.
+    </div>
+    <h3>تدريب سريع</h3>
+    <p>ما الفكرة الرئيسة في الفقرة السابقة؟</p>
+    <label class="answer"><input type="radio" name="rd" value="wrong"> أنواع الكتب فقط</label>
+    <label class="answer"><input type="radio" name="rd" value="correct"> فوائد القراءة</label>
+    <label class="answer"><input type="radio" name="rd" value="wrong"> كيفية طباعة الكتب</label>
+    <button onclick="check('rd','readingResult')">تحقق من الإجابة</button>
+    <p id="readingResult"></p>
+  </section>
+
+  <section id="writing" class="lesson card">
+    <h2>الدرس الرابع: كتابة فقرة</h2>
+    <p>عشان تكتب فقرة منظمة:</p>
+    <ol>
+      <li>ابدأ بجملة توضح الموضوع.</li>
+      <li>اكتب جملًا تشرح الفكرة بأمثلة أو أسباب.</li>
+      <li>استخدم أدوات الربط مثل: لأن، لذلك، بالإضافة إلى ذلك.</li>
+      <li>اختم بجملة تلخص الفكرة.</li>
+      <li>راجع الإملاء وعلامات الترقيم.</li>
+    </ol>
+    <div class="example">
+      <strong>موضوع: أهمية القراءة</strong><br>
+      القراءة عادة مفيدة في حياة الإنسان؛ لأنها تزيد معرفته
+      وتوسع خبراته. بالإضافة إلى ذلك، تساعده على تعلم كلمات
+      جديدة وفهم أفكار مختلفة. لذلك، ينبغي أن نخصص وقتًا
+      للقراءة كل يوم.
+    </div>
+    <p>جرّب تكتب فقرة قصيرة عن أهمية العلم في كراستك.</p>
+  </section>
+
+  <section id="quiz" class="lesson card">
+    <h2>اختبر نفسك 📝</h2>
+    <p>في جملة «كان الطالبُ نشيطًا»، ما خبر كان؟</p>
+    <label class="answer"><input type="radio" name="q" value="wrong"> الطالبُ</label>
+    <label class="answer"><input type="radio" name="q" value="correct"> نشيطًا</label>
+    <label class="answer"><input type="radio" name="q" value="wrong"> كان</label>
+    <button onclick="check('q','quizResult')">اعرف نتيجتك</button>
+    <p id="quizResult"></p>
+  </section>
+
+</main>
+
+<footer>StudyLift © — ذاكر وافهم وحقق هدفك 💚</footer>
+
+<script>
+  function showLesson(id) {
+    document.querySelectorAll('.lesson').forEach(function (lesson) {
+      lesson.classList.remove('active');
+    });
+    document.getElementById('welcome').style.display = 'none';
+    document.getElementById(id).classList.add('active');
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+  }
+
+  function check(group, resultId) {
+    const selected = document.querySelector(
+      'input[name="' + group + '"]:checked'
+    );
+    const result = document.getElementById(resultId);
+
+    if (!selected) {
+      result.textContent = 'اختار إجابة الأول 😊';
+      result.style.color = '#fbbf24';
+      return;
+    }
+
+    if (selected.value === 'correct') {
+      result.textContent = 'إجابة صحيحة! عاش 👏💚';
+      result.style.color = '#66e6bb';
+    } else {
+      result.textContent = 'مش دي الإجابة الصحيحة، حاول تراجع المثال تاني.';
+      result.style.color = '#fca5a5';
+    }
+  }
+</script>
+
+</body>
+</html>
