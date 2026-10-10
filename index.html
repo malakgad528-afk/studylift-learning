@@ -1,109 +1,242 @@
-!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyLift | منصتك التعليمية</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0b1220;
-      color: #f4f7fb;
-    }
-    header {
-      padding: 22px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid #273449;
-    }
-    .logo { font-size: 26px; font-weight: bold; }
-    .logo span { color: #5eead4; }
-    .hero {
-      text-align: center;
-      padding: 75px 20px 55px;
-    }
-    .hero h1 { font-size: clamp(32px, 6vw, 54px); margin-bottom: 15px; }
-    .hero h1 span { color: #5eead4; }
-    .hero p { color: #c0cada; line-height: 1.9; }
-    .btn {
-      display: inline-block;
-      background: #5eead4;
-      color: #0b1220;
-      padding: 13px 24px;
-      margin-top: 16px;
-      border-radius: 10px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .section { padding: 25px 7% 65px; }
-    .section h2 { text-align: center; margin-bottom: 30px; }
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 18px;
-    }
-    .card {
-      background: #141f31;
-      border: 1px solid #29384e;
-      border-radius: 16px;
-      padding: 24px;
-    }
-    .card .icon { font-size: 32px; }
-    .card p { color: #c0cada; line-height: 1.8; }
-    footer {
-      text-align: center;
-      padding: 25px;
-      color: #aeb9ca;
-      border-top: 1px solid #273449;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyLift | طريقك للتفوق</title>
+<style>
+:root {
+  --bg:#081522;
+  --card:#12283b;
+  --mint:#76e5bd;
+  --text:#f4f8fb;
+  --muted:#b5c5d3;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.8;
+}
+header{
+  padding:18px 6%;
+  background:#0d2030;
+  border-bottom:1px solid #294153;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.logo{font-size:26px;font-weight:bold}
+.logo span,h1 span{color:var(--mint)}
+nav{display:flex;gap:15px;flex-wrap:wrap}
+a{color:inherit;text-decoration:none}
+nav a{color:var(--muted)}
+.hero{
+  padding:65px 6%;
+  background:linear-gradient(135deg,#102c40,#081522);
+}
+.hero h1{font-size:clamp(30px,5vw,48px);line-height:1.4}
+.hero p{color:var(--muted);max-width:650px}
+.btn{
+  display:inline-block;
+  padding:10px 18px;
+  background:var(--mint);
+  color:#08251f;
+  border-radius:12px;
+  font-weight:bold;
+  border:0;
+  cursor:pointer;
+  font-family:inherit;
+}
+section{padding:35px 6%}
+h2{font-size:27px}
+.subtitle{color:var(--muted)}
+.search{
+  width:100%;
+  padding:14px;
+  margin:12px 0 22px;
+  border-radius:12px;
+  border:1px solid #294153;
+  background:#102438;
+  color:white;
+  font:inherit;
+}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:17px;
+}
+.card{
+  background:var(--card);
+  padding:23px;
+  border-radius:18px;
+  border:1px solid #294153;
+}
+.card.priority{border-color:var(--mint)}
+.icon{font-size:32px}
+.card p{color:var(--muted)}
+.tag{color:var(--mint);font-size:13px}
+.card .btn{margin-top:8px}
+.features .card{padding:18px}
+.notice{
+  border-right:3px solid var(--mint);
+  padding:13px;
+  background:#102c32;
+  border-radius:8px;
+  color:var(--muted);
+  margin-top:22px;
+}
+footer{
+  padding:25px 6%;
+  background:#0d2030;
+  color:var(--muted);
+  text-align:center;
+}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">Study<span>Lift</span></div>
-    <div>منصتك التعليمية المجانية 🎓</div>
-  </header>
 
-  <section class="hero">
-    <h1>رحلتك للنجاح <span>تبدأ هنا</span></h1>
+<header>
+  <div class="logo">Study<span>Lift</span></div>
+  <nav>
+    <a href="#years">السنوات الدراسية</a>
+    <a href="#features">المميزات</a>
+    <a href="#about">عن المنصة</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <p>منصتك التعليمية المجانية 📚</p>
+  <h1>مذاكرتك تبقى أسهل مع <span>StudyLift</span></h1>
+  <p>
+    مكان واحد للدروس والمذكرات والمراجعات.
+    اختاري سنتك الدراسية وابدئي تنظيم مذاكرتك خطوة بخطوة.
+  </p>
+  <a class="btn" href="#years">اختاري سنتك الدراسية ↓</a>
+</div>
+
+<section id="years">
+  <h2>🎓 السنوات الدراسية</h2>
+  <p class="subtitle">هنبدأ بأولى وتانية بكالوريا، وهنتوسع تدريجيًا.</p>
+
+  <input class="search" id="search" type="search"
+    placeholder="ابحثي عن السنة الدراسية...">
+
+  <div class="grid" id="yearGrid">
+    <article class="card priority" data-search="أولى اولى بكالوريا">
+      <div class="icon">🌱</div>
+      <span class="tag">أولوية المنصة</span>
+      <h3>أولى بكالوريا</h3>
+      <p>المواد والدروس والملخصات والتدريبات في مكان واحد.</p>
+      <a class="btn" href="#coming">دخول القسم</a>
+    </article>
+
+    <article class="card priority" data-search="تانية ثانية بكالوريا">
+      <div class="icon">🚀</div>
+      <span class="tag">أولوية المنصة</span>
+      <h3>تانية بكالوريا</h3>
+      <p>تنظيم المواد والمراجعات حسب المسار الدراسي.</p>
+      <a class="btn" href="#coming">دخول القسم</a>
+    </article>
+
+    <article class="card" data-search="تالتة ثالثة بكالوريا">
+      <div class="icon">🏆</div>
+      <span class="tag">قريبًا</span>
+      <h3>تالتة بكالوريا</h3>
+      <p>قسم نضيفه لاحقًا حسب احتياجات الطلاب.</p>
+    </article>
+
+    <article class="card" data-search="ثالثة تالتة ثانوي الثانوية العامة">
+      <div class="icon">📘</div>
+      <span class="tag">قريبًا</span>
+      <h3>تالتة ثانوي</h3>
+      <p>قسم إضافي للمراجعات ومصادر المذاكرة.</p>
+    </article>
+
+    <article class="card" data-search="جامعة مراحل أعلى">
+      <div class="icon">🧭</div>
+      <span class="tag">مستقبلًا</span>
+      <h3>مراحل أعلى وما فوق</h3>
+      <p>إمكانية إضافة مراحل جديدة في المستقبل.</p>
+    </article>
+  </div>
+
+  <p id="noResults" style="display:none;color:#b5c5d3">
+    مفيش نتائج. جرّبي كلمة تانية.
+  </p>
+
+  <p class="notice" id="coming">
+    الأقسام دي هيكل مبدئي. هنضيف المواد والمسارات بعد مراجعة
+    تفاصيل نظام البكالوريا المصرية والتأكد من صحة المحتوى.
+  </p>
+</section>
+
+<section id="features" class="features">
+  <h2>✨ مميزات StudyLift</h2>
+  <div class="grid">
+    <article class="card">
+      <div class="icon">🎥</div>
+      <h3>فيديوهات الشرح</h3>
+      <p>دروس مرتبة حسب السنة والمادة.</p>
+    </article>
+    <article class="card">
+      <div class="icon">📄</div>
+      <h3>المذكرات وPDF</h3>
+      <p>ملخصات ومصادر مراجعة منظمة.</p>
+    </article>
+    <article class="card">
+      <div class="icon">✍️</div>
+      <h3>التدريبات</h3>
+      <p>أسئلة تساعد الطلاب على المراجعة.</p>
+    </article>
+    <article class="card">
+      <div class="icon">🛡️</div>
+      <h3>مجتمع آمن</h3>
+      <p>الشات هيتضاف بعد تجهيز الحماية والخصوصية.</p>
+    </article>
+  </div>
+</section>
+
+<section id="about">
+  <div class="card">
+    <h2>💚 عن StudyLift</h2>
     <p>
-      اتعلم، نظّم مذاكرتك، وشارك زملاءك.<br>
-      كل أدواتك التعليمية في مكان واحد.
+      هدفنا نخلي المذاكرة أوضح وأسهل، بمحتوى منظم
+      وخطوات بسيطة تساعد كل طالب يقرب من هدفه.
     </p>
-    <a class="btn" href="#services">اكتشف المنصة</a>
-  </section>
+  </div>
+</section>
 
-  <section class="section" id="services">
-    <h2>كل اللي تحتاجه في StudyLift</h2>
-    <div class="cards">
-      <div class="card">
-        <div class="icon">🎬</div>
-        <h3>فيديوهات تعليمية</h3>
-        <p>دروس وشروحات تساعدك تفهم المنهج.</p>
-      </div>
-      <div class="card">
-        <div class="icon">📚</div>
-        <h3>مذكرات وملخصات</h3>
-        <p>ملفات مراجعة ومذكرات مرتبة لكل مادة.</p>
-      </div>
-      <div class="card">
-        <div class="icon">👥</div>
-        <h3>مجموعات المذاكرة</h3>
-        <p>مساحة للتعاون ومناقشة الأسئلة مع زملائك.</p>
-      </div>
-      <div class="card">
-        <div class="icon">💬</div>
-        <h3>شات الطلاب</h3>
-        <p>تواصل دراسي آمن بعد تفعيل الحسابات والحماية.</p>
-      </div>
-    </div>
-  </section>
+<footer>
+  <div class="logo">Study<span>Lift</span></div>
+  نتعلم النهارده، ونقرب لهدفنا بكرة.
+</footer>
 
-  <footer>
-    StudyLift © 2026 — اتعلم. اتطور. انجح.
-  </footer>
+<script>
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('#yearGrid .card')];
+const noResults = document.getElementById('noResults');
+
+search.addEventListener('input', () => {
+  const term = search.value.trim().toLowerCase();
+  let count = 0;
+
+  cards.forEach(card => {
+    const text = (
+      card.innerText + ' ' + card.dataset.search
+    ).toLowerCase();
+
+    const matches = text.includes(term);
+    card.style.display = matches ? '' : 'none';
+    if (matches) count++;
+  });
+
+  noResults.style.display = count ? 'none' : 'block';
+});
+</script>
+
 </body>
 </html>
