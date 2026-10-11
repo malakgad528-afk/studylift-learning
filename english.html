@@ -2,326 +2,319 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>English | StudyLift</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StudyLift | English - Second Baccalaureate</title>
+  <style>
+    :root {
+      --purple: #7041c6;
+      --dark: #251344;
+      --light: #f6f1ff;
+      --white: #ffffff;
+      --text: #302747;
+    }
 
-    <style>
-        * {
-            box-sizing: border-box;
-        }
+    * { box-sizing: border-box; }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f3f5ff;
-            color: #24264b;
-        }
+    body {
+      margin: 0;
+      font-family: Arial, Tahoma, sans-serif;
+      background: var(--light);
+      color: var(--text);
+      line-height: 1.8;
+    }
 
-        header {
-            background: linear-gradient(135deg, #5146e5, #9285ff);
-            color: white;
-            text-align: center;
-            padding: 35px 15px;
-        }
+    header {
+      background: linear-gradient(135deg, #442078, #8656df);
+      color: white;
+      text-align: center;
+      padding: 32px 16px;
+    }
 
-        header h1 {
-            margin: 0 0 10px;
-            font-size: 34px;
-        }
+    header h1 { margin: 0; font-size: 32px; }
+    header p { margin-bottom: 0; }
 
-        header p {
-            margin: 0;
-        }
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 14px;
+      background: white;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      box-shadow: 0 3px 12px #0000000c;
+    }
 
-        nav {
-            background: white;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 3px 10px #00000010;
-        }
+    nav a {
+      color: var(--purple);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 5px 10px;
+    }
 
-        nav a {
-            display: inline-block;
-            color: #5146e5;
-            text-decoration: none;
-            margin: 5px 10px;
-            font-weight: bold;
-        }
+    main {
+      max-width: 1050px;
+      margin: auto;
+      padding: 20px;
+    }
 
-        .container {
-            max-width: 950px;
-            margin: auto;
-            padding: 25px 16px;
-        }
+    section { margin: 28px 0; scroll-margin-top: 80px; }
 
-        .welcome {
-            text-align: center;
-            margin-bottom: 30px;
-        }
+    h2 {
+      color: var(--dark);
+      border-right: 5px solid var(--purple);
+      padding-right: 12px;
+    }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 16px;
+    }
 
-        .card {
-            background: white;
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 5px 18px #28286612;
-        }
+    .card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 5px 18px #39215c12;
+      border: 1px solid #ece3ff;
+    }
 
-        .card h2 {
-            color: #5146e5;
-            margin-top: 0;
-        }
+    .card h3 { margin-top: 0; color: var(--purple); }
 
-        .card p {
-            line-height: 1.8;
-        }
+    .btn {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 9px 14px;
+      background: var(--purple);
+      color: white;
+      text-decoration: none;
+      border-radius: 9px;
+      border: 0;
+      font-size: 15px;
+      cursor: pointer;
+    }
 
-        button {
-            background: #5146e5;
-            color: white;
-            border: none;
-            border-radius: 9px;
-            padding: 12px 18px;
-            font-size: 15px;
-            cursor: pointer;
-        }
+    .btn.secondary { background: #eee5ff; color: var(--dark); }
 
-        button:hover {
-            background: #3930b8;
-        }
+    .note {
+      background: #fff9e8;
+      border-right: 4px solid #e9b83f;
+      padding: 12px 15px;
+      border-radius: 8px;
+    }
 
-        .lesson {
-            display: none;
-            background: white;
-            padding: 24px;
-            margin-top: 25px;
-            border-radius: 16px;
-            line-height: 1.9;
-            box-shadow: 0 5px 18px #28286612;
-        }
+    .english { direction: ltr; text-align: left; }
+    .muted { color: #756b87; font-size: 14px; }
 
-        .lesson h2 {
-            color: #5146e5;
-        }
+    .question {
+      background: #f9f6ff;
+      padding: 12px;
+      border-radius: 10px;
+      margin: 10px 0;
+    }
 
-        .example {
-            background: #f0efff;
-            padding: 14px;
-            border-radius: 10px;
-            margin: 10px 0;
-            direction: ltr;
-            text-align: left;
-        }
+    .answer { display: none; color: #277343; font-weight: bold; }
 
-        .answer {
-            display: none;
-            background: #effaf1;
-            padding: 12px;
-            border-radius: 9px;
-            margin-top: 12px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            color: #666;
-        }
-    </style>
+    footer {
+      text-align: center;
+      background: var(--dark);
+      color: white;
+      padding: 22px;
+      margin-top: 35px;
+    }
+  </style>
 </head>
 
 <body>
+  <header>
+    <h1>StudyLift 💜</h1>
+    <p>English | الصف الثاني الثانوي - البكالوريا المصرية</p>
+    <p>العام الدراسي 2026–2027</p>
+  </header>
 
-<header>
-    <h1>📚 StudyLift</h1>
-    <p>قسم اللغة الإنجليزية 🇬🇧</p>
-</header>
+  <nav>
+    <a href="#books">كتب المنهج</a>
+    <a href="#story">القصة</a>
+    <a href="#summaries">الملخصات</a>
+    <a href="#quiz">اختبر نفسك</a>
+  </nav>
 
-<nav>
-    <a href="index.html">الرئيسية</a>
-    <a href="first.html">أولى بكالوريا</a>
-    <a href="second.html">تانية بكالوريا</a>
-    <a href="arabic.html">اللغة العربية</a>
-</nav>
+  <main>
+    <section id="books">
+      <h2>📚 كتب المنهج والمصادر</h2>
+      <p>اختاري الكتاب اللي محتاجة تذاكري منه.</p>
 
-<main class="container">
+      <div class="grid">
+        <article class="card">
+          <h3>📘 كتاب الوزارة - الجزء الأول</h3>
+          <p>الكتاب الأساسي للمنهج.</p>
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://www.nezakr.net/edu/p/2434/">
+            عرض الكتب الرسمية
+          </a>
+        </article>
 
-    <div class="welcome">
-        <h2>أهلًا بيك في قسم الإنجليزي 💜</h2>
-        <p>اختاري القسم اللي عايزة تذاكريه وابدئي!</p>
-    </div>
+        <article class="card">
+          <h3>📗 كتاب الوزارة - الجزء الثاني</h3>
+          <p>وصّلي للجزء الثاني من مجموعة الكتب.</p>
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://www.nezakr.net/edu/p/2434/">
+            فتح المجموعة
+          </a>
+        </article>
 
-    <div class="cards">
+        <article class="card">
+          <h3>📝 الأداءات والتقييمات</h3>
+          <p>تدريبات وتقييمات مرتبطة بالمنهج.</p>
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://www.nezakr.net/edu/p/2478/">
+            عرض التقييمات
+          </a>
+        </article>
 
-        <div class="card">
-            <h2>📖 Grammar</h2>
-            <p>شرح قواعد اللغة الإنجليزية بأمثلة وترجمة عربية.</p>
-            <button onclick="showLesson('grammar')">ابدئي الجرامر</button>
-        </div>
+        <article class="card">
+          <h3>🏛️ مكتبة الوزارة الرسمية</h3>
+          <p>للوصول إلى الكتب المنشورة من الوزارة.</p>
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://moe.gov.eg/ar/elearningenterypage/e-learning/">
+            دخول المكتبة
+          </a>
+        </article>
 
-        <div class="card">
-            <h2>🌍 Translation</h2>
-            <p>تدريب على الترجمة من الإنجليزي للعربي والعكس.</p>
-            <button onclick="showLesson('translation')">ابدئي الترجمة</button>
-        </div>
-
-        <div class="card">
-            <h2>📝 Vocabulary</h2>
-            <p>كلمات إنجليزية مهمة ومعانيها باللغة العربية.</p>
-            <button onclick="showLesson('vocabulary')">ابدئي الكلمات</button>
-        </div>
-
-        <div class="card">
-            <h2>🎯 Quiz</h2>
-            <p>اختبري نفسك في سؤال جرامر بسيط.</p>
-            <button onclick="showLesson('quiz')">ابدئي الاختبار</button>
-        </div>
-
-    </div>
-
-    <section id="grammar" class="lesson">
-        <h2>📖 Present Simple — المضارع البسيط</h2>
-
-        <p><strong>الاستخدام:</strong> بنستخدمه للتعبير عن العادات والحقائق.</p>
-
-        <p><strong>القاعدة:</strong></p>
-        <div class="example">
-            I / You / We / They + verb<br>
-            He / She / It + verb + s
-        </div>
-
-        <p><strong>أمثلة:</strong></p>
-
-        <div class="example">I play football every day.</div>
-        <p>أنا بلعب كرة قدم كل يوم.</p>
-
-        <div class="example">She plays tennis.</div>
-        <p>هي بتلعب التنس.</p>
-
-        <p>خلي بالك: في الإثبات بنضيف غالبًا s للفعل مع He وShe وIt.</p>
+        <article class="card">
+          <h3>📚 ملخصات ومراجعات خارجية</h3>
+          <p>ابحثي عن مراجعات مناسبة لإصدار 2026–2027.</p>
+          <a class="btn" target="_blank" rel="noopener"
+             href="https://www.nezakr.net/edu/baccalaureate-study.php?grade=2&amp;subject=4">
+            عرض الملفات
+          </a>
+          <p class="muted">راجعي اسم الكتاب وسنة الإصدار قبل الاعتماد عليه.</p>
+        </article>
+      </div>
     </section>
 
-    <section id="translation" class="lesson">
-        <h2>🌍 تدريب الترجمة</h2>
+    <section id="story">
+      <h2>🦕 The Lost World</h2>
 
-        <p>ترجمي الجملة دي للعربي:</p>
-        <div class="example">Education is the key to success.</div>
+      <div class="card">
+        <p class="english">
+          <strong>The Lost World</strong><br>
+          By Arthur Conan Doyle
+        </p>
+        <p>
+          هنا هتلاقي فصول القصة وملخصاتها وأسئلة تدريبية.
+          افتحي كتاب القصة الأصلي لمراجعة الأحداث والتفاصيل الدقيقة.
+        </p>
+        <a class="btn" target="_blank" rel="noopener"
+           href="https://www.nezakr.net/edu/p/2433/">
+          فتح كتاب القصة
+        </a>
+      </div>
 
-        <button onclick="toggleAnswer('answer1')">إظهار الإجابة</button>
-        <div id="answer1" class="answer">
-            التعليم هو مفتاح النجاح.
-        </div>
+      <div class="grid" style="margin-top:16px">
+        <article class="card">
+          <h3>Chapter 1</h3>
+          <p class="english">A Dream of Adventure</p>
+          <p>بداية المغامرة والتعرّف على أجواء القصة والشخصيات.</p>
+        </article>
+
+        <article class="card">
+          <h3>Chapter 2</h3>
+          <p class="english">Professor Challenger's Secret</p>
+          <p>سرّ الأستاذ تشالنجر ودوره في تطور أحداث المغامرة.</p>
+        </article>
+
+        <article class="card">
+          <h3>Chapter 3</h3>
+          <p class="english">The Expedition Is Chosen</p>
+          <p>اختيار أعضاء البعثة والاستعداد للرحلة.</p>
+        </article>
+
+        <article class="card">
+          <h3>Chapter 4</h3>
+          <p class="english">Into the Unknown</p>
+          <p>تبدأ البعثة رحلتها نحو مكان مجهول.</p>
+        </article>
+
+        <article class="card">
+          <h3>Chapter 5</h3>
+          <p class="english">Trapped in the Lost World</p>
+          <p>تواجه البعثة تحديات داخل العالم المفقود.</p>
+        </article>
+
+        <article class="card">
+          <h3>Chapters 6–10</h3>
+          <p>هنضيف عناوين الفصول وملخصاتها بعد مراجعة نسخة القصة المعتمدة.</p>
+          <a class="btn secondary" target="_blank" rel="noopener"
+             href="https://www.nezakr.net/edu/p/2433/">
+            مراجعة كتاب القصة
+          </a>
+        </article>
+      </div>
+
+      <p class="note">
+        ملحوظة: الجمل السابقة تعريفات مختصرة وليست ترجمة كاملة أو ملخصًا تفصيليًا
+        معتمدًا لكل فصل.
+      </p>
+    </section>
+
+    <section id="summaries">
+      <h2>🧠 ملخصات للمذاكرة</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Vocabulary</h3>
+          <p>سجّلي الكلمات الجديدة ومعانيها ومثالًا على كل كلمة.</p>
+          <p class="english">Word → Meaning → Example</p>
+        </article>
+
+        <article class="card">
+          <h3>Grammar</h3>
+          <p>اكتبي القاعدة في سطر، وبعدها مثال محلول وسؤال للتدريب.</p>
+        </article>
+
+        <article class="card">
+          <h3>Story Summary</h3>
+          <p>لكل فصل: أهم الأحداث، الشخصيات، دوافعها، والدليل من النص.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="quiz">
+      <h2>✍️ اختبر نفسك</h2>
+      <div class="card">
+        <p><strong>1.</strong> Who wrote The Lost World?</p>
+        <button class="btn secondary" onclick="showAnswer('a1')">Show answer</button>
+        <p id="a1" class="answer english">Arthur Conan Doyle.</p>
 
         <hr>
 
-        <p>ترجمي للإنجليزي:</p>
-        <p>أنا أذهب إلى المدرسة كل يوم.</p>
-
-        <button onclick="toggleAnswer('answer2')">إظهار الإجابة</button>
-        <div id="answer2" class="answer" style="direction:ltr; text-align:left;">
-            I go to school every day.
+        <p><strong>2.</strong> What is the purpose of a story summary?</p>
+        <div class="question">
+          A) To copy every word<br>
+          B) To explain the main events briefly<br>
+          C) To list unrelated vocabulary
         </div>
+        <button class="btn secondary" onclick="showAnswer('a2')">Show answer</button>
+        <p id="a2" class="answer">B) To explain the main events briefly.</p>
+      </div>
     </section>
+  </main>
 
-    <section id="vocabulary" class="lesson">
-        <h2>📝 كلمات مهمة</h2>
+  <footer>
+    <p>StudyLift 💜 | اتعلمي خطوة بخطوة</p>
+    <p class="muted">موقع تعليمي للمذاكرة والمراجعة.</p>
+  </footer>
 
-        <div class="example">Education = التعليم</div>
-        <div class="example">Success = النجاح</div>
-        <div class="example">Environment = البيئة</div>
-        <div class="example">Challenge = تحدي</div>
-        <div class="example">Improve = يطوّر / يحسّن</div>
-        <div class="example">Achieve = يحقق</div>
-        <div class="example">Knowledge = المعرفة</div>
-        <div class="example">Important = مهم</div>
-    </section>
-
-    <section id="quiz" class="lesson">
-        <h2>🎯 اختبري معلوماتك</h2>
-
-        <p>Choose the correct answer:</p>
-
-        <div class="example">
-            She _____ to school every day.
-        </div>
-
-        <label>
-            <input type="radio" name="quizAnswer" value="a"> go
-        </label>
-        <br>
-
-        <label>
-            <input type="radio" name="quizAnswer" value="b"> goes
-        </label>
-        <br>
-
-        <label>
-            <input type="radio" name="quizAnswer" value="c"> going
-        </label>
-        <br><br>
-
-        <button onclick="checkQuiz()">تحققي من الإجابة</button>
-
-        <p id="quizResult"></p>
-    </section>
-
-</main>
-
-<footer>
-    <p>© 2026 StudyLift | بالتوفيق يا بطلة 💜</p>
-</footer>
-
-<script>
-    function showLesson(id) {
-        const lessons = document.querySelectorAll('.lesson');
-
-        lessons.forEach(function(lesson) {
-            lesson.style.display = 'none';
-        });
-
-        document.getElementById(id).style.display = 'block';
-
-        document.getElementById(id).scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
+  <script>
+    function showAnswer(id) {
+      const answer = document.getElementById(id);
+      answer.style.display =
+        answer.style.display === "block" ? "none" : "block";
     }
-
-    function toggleAnswer(id) {
-        const answer = document.getElementById(id);
-
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-        } else {
-            answer.style.display = 'block';
-        }
-    }
-
-    function checkQuiz() {
-        const selected = document.querySelector(
-            'input[name="quizAnswer"]:checked'
-        );
-
-        const result = document.getElementById('quizResult');
-
-        if (!selected) {
-            result.textContent = 'اختاري إجابة الأول 😊';
-            result.style.color = '#b77900';
-        } else if (selected.value === 'b') {
-            result.textContent = 'برافو! إجابة صحيحة 🎉';
-            result.style.color = 'green';
-        } else {
-            result.textContent = 'حاولي تاني 💪 الإجابة مش صحيحة.';
-            result.style.color = 'red';
-        }
-    }
-</script>
-
+  </script>
 </body>
 </html>
-```
