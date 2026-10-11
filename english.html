@@ -13,4 +13,315 @@
 
         body {
             margin: 0;
-           
+            font-family: Arial, sans-serif;
+            background: #f3f5ff;
+            color: #24264b;
+        }
+
+        header {
+            background: linear-gradient(135deg, #5146e5, #9285ff);
+            color: white;
+            text-align: center;
+            padding: 35px 15px;
+        }
+
+        header h1 {
+            margin: 0 0 10px;
+            font-size: 34px;
+        }
+
+        header p {
+            margin: 0;
+        }
+
+        nav {
+            background: white;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 3px 10px #00000010;
+        }
+
+        nav a {
+            display: inline-block;
+            color: #5146e5;
+            text-decoration: none;
+            margin: 5px 10px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: auto;
+            padding: 25px 16px;
+        }
+
+        .welcome {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+        }
+
+        .card {
+            background: white;
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 5px 18px #28286612;
+        }
+
+        .card h2 {
+            color: #5146e5;
+            margin-top: 0;
+        }
+
+        .card p {
+            line-height: 1.8;
+        }
+
+        button {
+            background: #5146e5;
+            color: white;
+            border: none;
+            border-radius: 9px;
+            padding: 12px 18px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #3930b8;
+        }
+
+        .lesson {
+            display: none;
+            background: white;
+            padding: 24px;
+            margin-top: 25px;
+            border-radius: 16px;
+            line-height: 1.9;
+            box-shadow: 0 5px 18px #28286612;
+        }
+
+        .lesson h2 {
+            color: #5146e5;
+        }
+
+        .example {
+            background: #f0efff;
+            padding: 14px;
+            border-radius: 10px;
+            margin: 10px 0;
+            direction: ltr;
+            text-align: left;
+        }
+
+        .answer {
+            display: none;
+            background: #effaf1;
+            padding: 12px;
+            border-radius: 9px;
+            margin-top: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 StudyLift</h1>
+    <p>قسم اللغة الإنجليزية 🇬🇧</p>
+</header>
+
+<nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="first.html">أولى بكالوريا</a>
+    <a href="second.html">تانية بكالوريا</a>
+    <a href="arabic.html">اللغة العربية</a>
+</nav>
+
+<main class="container">
+
+    <div class="welcome">
+        <h2>أهلًا بيك في قسم الإنجليزي 💜</h2>
+        <p>اختاري القسم اللي عايزة تذاكريه وابدئي!</p>
+    </div>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>📖 Grammar</h2>
+            <p>شرح قواعد اللغة الإنجليزية بأمثلة وترجمة عربية.</p>
+            <button onclick="showLesson('grammar')">ابدئي الجرامر</button>
+        </div>
+
+        <div class="card">
+            <h2>🌍 Translation</h2>
+            <p>تدريب على الترجمة من الإنجليزي للعربي والعكس.</p>
+            <button onclick="showLesson('translation')">ابدئي الترجمة</button>
+        </div>
+
+        <div class="card">
+            <h2>📝 Vocabulary</h2>
+            <p>كلمات إنجليزية مهمة ومعانيها باللغة العربية.</p>
+            <button onclick="showLesson('vocabulary')">ابدئي الكلمات</button>
+        </div>
+
+        <div class="card">
+            <h2>🎯 Quiz</h2>
+            <p>اختبري نفسك في سؤال جرامر بسيط.</p>
+            <button onclick="showLesson('quiz')">ابدئي الاختبار</button>
+        </div>
+
+    </div>
+
+    <section id="grammar" class="lesson">
+        <h2>📖 Present Simple — المضارع البسيط</h2>
+
+        <p><strong>الاستخدام:</strong> بنستخدمه للتعبير عن العادات والحقائق.</p>
+
+        <p><strong>القاعدة:</strong></p>
+        <div class="example">
+            I / You / We / They + verb<br>
+            He / She / It + verb + s
+        </div>
+
+        <p><strong>أمثلة:</strong></p>
+
+        <div class="example">I play football every day.</div>
+        <p>أنا بلعب كرة قدم كل يوم.</p>
+
+        <div class="example">She plays tennis.</div>
+        <p>هي بتلعب التنس.</p>
+
+        <p>خلي بالك: في الإثبات بنضيف غالبًا s للفعل مع He وShe وIt.</p>
+    </section>
+
+    <section id="translation" class="lesson">
+        <h2>🌍 تدريب الترجمة</h2>
+
+        <p>ترجمي الجملة دي للعربي:</p>
+        <div class="example">Education is the key to success.</div>
+
+        <button onclick="toggleAnswer('answer1')">إظهار الإجابة</button>
+        <div id="answer1" class="answer">
+            التعليم هو مفتاح النجاح.
+        </div>
+
+        <hr>
+
+        <p>ترجمي للإنجليزي:</p>
+        <p>أنا أذهب إلى المدرسة كل يوم.</p>
+
+        <button onclick="toggleAnswer('answer2')">إظهار الإجابة</button>
+        <div id="answer2" class="answer" style="direction:ltr; text-align:left;">
+            I go to school every day.
+        </div>
+    </section>
+
+    <section id="vocabulary" class="lesson">
+        <h2>📝 كلمات مهمة</h2>
+
+        <div class="example">Education = التعليم</div>
+        <div class="example">Success = النجاح</div>
+        <div class="example">Environment = البيئة</div>
+        <div class="example">Challenge = تحدي</div>
+        <div class="example">Improve = يطوّر / يحسّن</div>
+        <div class="example">Achieve = يحقق</div>
+        <div class="example">Knowledge = المعرفة</div>
+        <div class="example">Important = مهم</div>
+    </section>
+
+    <section id="quiz" class="lesson">
+        <h2>🎯 اختبري معلوماتك</h2>
+
+        <p>Choose the correct answer:</p>
+
+        <div class="example">
+            She _____ to school every day.
+        </div>
+
+        <label>
+            <input type="radio" name="quizAnswer" value="a"> go
+        </label>
+        <br>
+
+        <label>
+            <input type="radio" name="quizAnswer" value="b"> goes
+        </label>
+        <br>
+
+        <label>
+            <input type="radio" name="quizAnswer" value="c"> going
+        </label>
+        <br><br>
+
+        <button onclick="checkQuiz()">تحققي من الإجابة</button>
+
+        <p id="quizResult"></p>
+    </section>
+
+</main>
+
+<footer>
+    <p>© 2026 StudyLift | بالتوفيق يا بطلة 💜</p>
+</footer>
+
+<script>
+    function showLesson(id) {
+        const lessons = document.querySelectorAll('.lesson');
+
+        lessons.forEach(function(lesson) {
+            lesson.style.display = 'none';
+        });
+
+        document.getElementById(id).style.display = 'block';
+
+        document.getElementById(id).scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    }
+
+    function toggleAnswer(id) {
+        const answer = document.getElementById(id);
+
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+    }
+
+    function checkQuiz() {
+        const selected = document.querySelector(
+            'input[name="quizAnswer"]:checked'
+        );
+
+        const result = document.getElementById('quizResult');
+
+        if (!selected) {
+            result.textContent = 'اختاري إجابة الأول 😊';
+            result.style.color = '#b77900';
+        } else if (selected.value === 'b') {
+            result.textContent = 'برافو! إجابة صحيحة 🎉';
+            result.style.color = 'green';
+        } else {
+            result.textContent = 'حاولي تاني 💪 الإجابة مش صحيحة.';
+            result.style.color = 'red';
+        }
+    }
+</script>
+
+</body>
+</html>
+```
