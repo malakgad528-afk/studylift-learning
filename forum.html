@@ -1,0 +1,396 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>منتدى StudyLift</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f5ff;
+      color: #302344;
+    }
+    header {
+      background: linear-gradient(135deg,#6c3483,#8e44ad);
+      color: white;
+      padding: 25px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0 0 8px; }
+    nav { margin-top: 18px; }
+    nav a { color: white; text-decoration: none; font-weight: bold; }
+    main { max-width: 800px; margin: 24px auto; padding: 0 14px; }
+    .card {
+      background: white;
+      border: 1px solid #eadcff;
+      border-radius: 18px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 5px 18px #6c34830d;
+    }
+    h2 { color: #6c3483; margin-top: 0; }
+    input, textarea, select {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #d9c4ef;
+      border-radius: 10px;
+      font: inherit;
+      background: white;
+    }
+    textarea { min-height: 100px; resize: vertical; }
+    button {
+      background: #6c3483;
+      color: white;
+      border: 0;
+      padding: 11px 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      font: inherit;
+      margin: 4px 0;
+    }
+    button.secondary { background: #eee5ff; color: #6c3483; }
+    button:disabled { opacity: .5; cursor: wait; }
+    .muted { color: #786b86; font-size: 14px; }
+    .post-title { overflow-wrap: anywhere; }
+    .post-content { white-space: pre-wrap; overflow-wrap: anywhere; }
+    .reply {
+      background: #faf7ff;
+      border-radius: 10px;
+      padding: 12px;
+      margin: 8px 0;
+    }
+    .hidden { display: none !important; }
+    #message { white-space: pre-wrap; margin: 12px 0; }
+    .error { color: #b42318; }
+    .success { color: #18794e; }
+    footer { text-align: center; padding: 25px; color: #786b86; }
+  </style>
+</head>
+<body>
+<header>
+  <h1>💜 StudyLift Forum</h1>
+  <p>اسأل، اتناقش، وساعد زمايلك في المذاكرة 📚</p>
+  <nav><a href="index.html">الصفحة الرئيسية</a></nav>
+</header>
+
+<main>
+  <div id="message" role="status" aria-live="polite"></div>
+
+  <section class="card" id="setup">
+    <h2>⚙️ ربط المنتدى</h2>
+    <p>أضف بيانات مشروع Supabase في الكود قبل استخدام المنتدى.</p>
+    <p class="muted">استخدم Project URL وPublishable key فقط، ولا تضع Secret key هنا.</p>
+  </section>
+
+  <section class="card" id="auth-card">
+    <h2>👋 أهلاً بيك في StudyLift</h2>
+    <p class="muted">سجّل حساب جديد أو ادخل لحسابك الحالي.</p>
+    <form id="signup-form">
+      <h3>إنشاء حساب</h3>
+      <input id="signup-email" type="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
+      <input id="signup-password" type="password" placeholder="كلمة السر (8 أحرف على الأقل)" minlength="8" autocomplete="new-password" required>
+      <button type="submit">إنشاء حساب</button>
+    </form>
+    <hr style="border:0;border-top:1px solid #eee;margin:20px 0">
+    <form id="login-form">
+      <h3>تسجيل الدخول</h3>
+      <input id="login-email" type="email" placeholder="البريد الإلكتروني" autocomplete="email" required>
+      <input id="login-password" type="password" placeholder="كلمة السر" autocomplete="current-password" required>
+      <button type="submit">دخول</button>
+    </form>
+  </section>
+
+  <section class="card hidden" id="member-card">
+    <h2>👤 حسابك</h2>
+    <p id="member-email" class="muted"></p>
+    <button id="logout-btn" class="secondary" type="button">تسجيل الخروج</button>
+  </section>
+
+  <section class="card hidden" id="compose-card">
+    <h2>✍️ اكتب سؤال أو منشور</h2>
+    <form id="post-form">
+      <input id="post-title" maxlength="150" placeholder="عنوان السؤال" required>
+      <select id="post-category">
+        <option value="عام">عام</option>
+        <option value="إنجليزي">إنجليزي</option>
+        <option value="عربي">عربي</option>
+        <option value="رياضيات">رياضيات</option>
+        <option value="علوم">علوم</option>
+        <option value="أخرى">أخرى</option>
+      </select>
+      <textarea id="post-content" maxlength="10000" placeholder="اكتب تفاصيل سؤالك..." required></textarea>
+      <button type="submit">نشر المنشور</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>💬 مناقشات الطلاب</h2>
+    <div id="posts-list"><div class="card">جاري تحميل المنشورات...</div></div>
+  </section>
+</main>
+
+<footer>StudyLift 💜 نتعلم وننجح مع بعض</footer>
+
+<script>
+  // استبدل القيمتين التاليتين ببيانات مشروعك من Supabase.
+  const SUPABASE_URL = "https://fqcholhxokzsnjaonvgk.supabase.co";
+  const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_ovM3QKqXfVp3fUiVBt0Wuw_Z8wqc1Fm;
+
+  const configured =
+    SUPABASE_URL.startsWith("https://") &&
+    !SUPABASE_URL.includes("PASTE_") &&
+    !SUPABASE_PUBLISHABLE_KEY.includes("PASTE_") &&
+    SUPABASE_PUBLISHABLE_KEY.length > 10;
+
+  const message = document.getElementById("message");
+  const list = document.getElementById("posts-list");
+  let client = null;
+  let currentUser = null;
+
+  function showMessage(text, error = false) {
+    message.textContent = text;
+    message.className = error ? "error" : "success";
+  }
+
+  function element(tag, className, text) {
+    const el = document.createElement(tag);
+    if (className) el.className = className;
+    if (text !== undefined) el.textContent = text;
+    return el;
+  }
+
+  function makeButton(text, handler, secondary = false) {
+    const button = element("button", secondary ? "secondary" : "", text);
+    button.type = "button";
+    button.addEventListener("click", handler);
+    return button;
+  }
+
+  function setBusy(form, busy) {
+    form.querySelectorAll("button").forEach(b => b.disabled = busy);
+  }
+
+  async function runForm(form, task) {
+    form.addEventListener("submit", async event => {
+      event.preventDefault();
+      if (!client) return showMessage("لازم نكمل إعداد الربط الأول.", true);
+      setBusy(form, true);
+      try {
+        await task();
+      } catch (error) {
+        showMessage(error.message || "حصل خطأ. حاول مرة تانية.", true);
+      } finally {
+        setBusy(form, false);
+      }
+    });
+  }
+
+  async function refreshAuth(session) {
+    currentUser = session?.user || null;
+    document.getElementById("auth-card").classList.toggle("hidden", !!currentUser);
+    document.getElementById("member-card").classList.toggle("hidden", !currentUser);
+    document.getElementById("compose-card").classList.toggle("hidden", !currentUser);
+    document.getElementById("member-email").textContent =
+      currentUser ? "حسابك: " + currentUser.email : "";
+    await loadPosts();
+  }
+
+  async function loadPosts() {
+    if (!client) {
+      list.replaceChildren(element("div", "card",
+        "المنتدى جاهز للتصميم، وباقي إضافة بيانات الربط."));
+      return;
+    }
+
+    list.replaceChildren(element("div", "card", "جاري تحميل المنشورات..."));
+
+    const { data: posts, error } = await client
+      .from("posts")
+      .select("id,user_id,title,content,category,created_at")
+      .order("created_at", { ascending: false })
+      .limit(50);
+
+    if (error) {
+      list.replaceChildren(element("div", "card", "تعذر تحميل المنشورات."));
+      showMessage(error.message, true);
+      return;
+    }
+
+    if (!posts?.length) {
+      list.replaceChildren(element("div", "card",
+        "لسه مفيش منشورات. سجّل دخولك وابدأ أول مناقشة! 💜"));
+      return;
+    }
+
+    const postIds = posts.map(p => p.id);
+    const userIds = [...new Set(posts.map(p => p.user_id))];
+
+    const [profileResult, replyResult] = await Promise.all([
+      client.from("profiles").select("id,username").in("id", userIds),
+      client.from("replies")
+        .select("id,post_id,user_id,content,created_at")
+        .in("post_id", postIds)
+        .order("created_at", { ascending: true })
+    ]);
+
+    if (profileResult.error || replyResult.error) {
+      list.replaceChildren(element("div", "card", "حصل خطأ في تحميل بيانات المنتدى."));
+      showMessage((profileResult.error || replyResult.error).message, true);
+      return;
+    }
+
+    const replyUserIds = [...new Set((replyResult.data || []).map(r => r.user_id))];
+    const missingIds = replyUserIds.filter(id => !userIds.includes(id));
+    let replyProfiles = [];
+    if (missingIds.length) {
+      const result = await client.from("profiles").select("id,username").in("id", missingIds);
+      if (result.error) {
+        showMessage(result.error.message, true);
+        return;
+      }
+      replyProfiles = result.data || [];
+    }
+
+    const profiles = new Map(
+      [...(profileResult.data || []), ...replyProfiles].map(p => [p.id, p.username])
+    );
+    const repliesByPost = new Map();
+    for (const reply of (replyResult.data || [])) {
+      if (!repliesByPost.has(reply.post_id)) repliesByPost.set(reply.post_id, []);
+      repliesByPost.get(reply.post_id).push(reply);
+    }
+
+    list.replaceChildren();
+
+    for (const post of posts) {
+      const card = element("article", "card");
+      card.append(
+        element("p", "muted", (profiles.get(post.user_id) || "طالب") +
+          " · " + post.category + " · " +
+          new Date(post.created_at).toLocaleString("ar-EG")),
+        element("h3", "post-title", post.title),
+        element("p", "post-content", post.content)
+      );
+
+      const repliesBox = element("div", "");
+      repliesBox.append(element("h4", "", "الردود"));
+      for (const reply of (repliesByPost.get(post.id) || [])) {
+        repliesBox.append(element("div", "reply",
+          (profiles.get(reply.user_id) || "طالب") + ": " + reply.content));
+      }
+      if (!repliesBox.querySelector(".reply")) {
+        repliesBox.append(element("p", "muted", "مفيش ردود لسه."));
+      }
+      card.append(repliesBox);
+
+      if (currentUser) {
+        const form = element("form", "");
+        const input = element("textarea", "");
+        input.maxLength = 5000;
+        input.rows = 2;
+        input.placeholder = "اكتب ردك...";
+        input.required = true;
+        const submit = element("button", "", "إرسال الرد");
+        submit.type = "submit";
+        form.append(input, submit);
+        form.addEventListener("submit", async event => {
+          event.preventDefault();
+          submit.disabled = true;
+          const { error } = await client.from("replies").insert({
+            post_id: post.id,
+            user_id: currentUser.id,
+            content: input.value.trim()
+          });
+          submit.disabled = false;
+          if (error) return showMessage(error.message, true);
+          showMessage("تم إرسال الرد 💜");
+          await loadPosts();
+        });
+        card.append(form);
+
+        if (post.user_id === currentUser.id) {
+          card.append(makeButton("حذف منشوري", async () => {
+            if (!confirm("متأكد إنك عايز تحذف المنشور؟")) return;
+            const { error } = await client.from("posts").delete().eq("id", post.id);
+            if (error) return showMessage(error.message, true);
+            showMessage("تم حذف المنشور.");
+            await loadPosts();
+          }, true));
+        }
+      } else {
+        card.append(element("p", "muted", "سجّل دخولك عشان تقدر ترد."));
+      }
+
+      list.append(card);
+    }
+  }
+
+  if (!configured) {
+    showMessage("الواجهة جاهزة. باقي وضع رابط المشروع والمفتاح العام في الكود.");
+    document.getElementById("setup").classList.remove("hidden");
+    list.replaceChildren(element("div", "card",
+      "بعد إضافة بيانات الربط، هتظهر المنشورات الحقيقية هنا."));
+  } else {
+    document.getElementById("setup").classList.add("hidden");
+    client = window.supabase.createClient(
+      SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY
+    );
+
+    runForm(document.getElementById("signup-form"), async () => {
+      const email = document.getElementById("signup-email").value.trim();
+      const password = document.getElementById("signup-password").value;
+      const { data, error } = await client.auth.signUp({ email, password });
+      if (error) throw error;
+      if (data.session) {
+        showMessage("اتعمل حسابك بنجاح 💜");
+      } else {
+        showMessage("راجع بريدك الإلكتروني لتأكيد الحساب، وبعدها سجّل دخولك.");
+      }
+    });
+
+    runForm(document.getElementById("login-form"), async () => {
+      const email = document.getElementById("login-email").value.trim();
+      const password = document.getElementById("login-password").value;
+      const { error } = await client.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      showMessage("أهلاً بيك رجعت للمنتدى 💜");
+    });
+
+    runForm(document.getElementById("post-form"), async () => {
+      const title = document.getElementById("post-title").value.trim();
+      const content = document.getElementById("post-content").value.trim();
+      const category = document.getElementById("post-category").value;
+      if (!currentUser) throw new Error("سجّل دخولك الأول.");
+      const { error } = await client.from("posts").insert({
+        user_id: currentUser.id, title, content, category
+      });
+      if (error) throw error;
+      document.getElementById("post-form").reset();
+      showMessage("اتنشر سؤالك بنجاح 💜");
+      await loadPosts();
+    });
+
+    document.getElementById("logout-btn").addEventListener("click", async () => {
+      const { error } = await client.auth.signOut();
+      if (error) return showMessage(error.message, true);
+      showMessage("تم تسجيل الخروج.");
+    });
+
+    client.auth.onAuthStateChange((_event, session) => {
+      setTimeout(() => refreshAuth(session), 0);
+    });
+
+    client.auth.getSession().then(({ data, error }) => {
+      if (error) return showMessage(error.message, true);
+      refreshAuth(data.session);
+    });
+  }
+</script>
+</body>
+</html>
